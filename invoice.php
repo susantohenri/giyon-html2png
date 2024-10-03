@@ -56,12 +56,12 @@ $order = wc_get_order($order_id);
     <script type="text/javascript">
         html2canvas(document.querySelector(`table`))
             .then(function(canvas) {
-                // document.body.appendChild(canvas)
-                // const link = document.createElement('a')
-                // link.download = 'invoice-<?= $order_id ?>.png'
-                // link.href = document.querySelector(`canvas`).toDataURL()
-                // link.click()
-                // window.close()
+                document.body.appendChild(canvas)
+                const link = document.createElement('a')
+                link.download = 'Invoice-<?= $order_id ?>.png'
+                link.href = document.querySelector(`canvas`).toDataURL()
+                link.click()
+                window.close()
             })
     </script>
 </body>
