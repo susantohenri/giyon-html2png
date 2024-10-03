@@ -2,6 +2,7 @@
 
 include '../../../wp-load.php';
 $order_id = $_GET['order_id'];
+$order = wc_get_order($order_id);
 
 ?>
 <html>
@@ -25,16 +26,13 @@ $order_id = $_GET['order_id'];
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
+            <?php foreach ($order->get_items() as $id => $item): ?>
+                <tr>
+                    <td><?= $item['name'] ?></td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            <?php endforeach ?>
         </tbody>
         <tfoot>
             <tr>
@@ -58,12 +56,12 @@ $order_id = $_GET['order_id'];
     <script type="text/javascript">
         html2canvas(document.querySelector(`table`))
             .then(function(canvas) {
-                document.body.appendChild(canvas)
-                const link = document.createElement('a')
-                link.download = 'invoice-<?= $order_id ?>.png'
-                link.href = document.querySelector(`canvas`).toDataURL()
-                link.click()
-                window.close()
+                // document.body.appendChild(canvas)
+                // const link = document.createElement('a')
+                // link.download = 'invoice-<?= $order_id ?>.png'
+                // link.href = document.querySelector(`canvas`).toDataURL()
+                // link.click()
+                // window.close()
             })
     </script>
 </body>
